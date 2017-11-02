@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-// import logo from './logo.svg';
-import './App.css';
-import MessageList from './components/MessageList'
-import Toolbar from './components/Toolbar'
+import React, { Component } from 'react'
+// import logo from './logo.svg'
+import './App.css'
+import MessageList from './MessageList'
+import Toolbar from './Toolbar'
+// import MainApp from './components/MainApp'
 
 const messages = [
   {
@@ -70,7 +71,6 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = { messages: messages }
-    console.log("initial state", this.state)
   }
 
   render() {
@@ -79,8 +79,8 @@ class App extends Component {
         <Toolbar />
         <MessageList messages={ this.state.messages } />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

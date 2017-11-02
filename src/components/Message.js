@@ -1,8 +1,6 @@
 import React from 'react'
 
-const Message = (message) => (
-
-
+const Message = ({ message }) => (
   <div className="row message unread">
     <div className="col-xs-1">
       <div className="row">
@@ -16,7 +14,7 @@ const Message = (message) => (
     </div>
     <div className="col-xs-11">
       <a href="#">
-        { `${message.subject} ${message.id}` }
+        { `${ message.subject } ${ message.starred }` }
       </a>
     </div>
   </div>
