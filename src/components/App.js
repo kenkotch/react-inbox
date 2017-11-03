@@ -50,34 +50,32 @@ class App extends Component {
     this.setState({ messages })
   }
 
+  toggleSelectAll() {
+    const selectedMessages = this.state.messages.filter(message => message.selected)
+    const selected = selectedMessages.length !== this.state.messages.length
+
+    this.setState({
+      messages: this.state.messages.map(message => (
+        message.selected !== selected ? { ...message, selected } : message
+      ))
+    })
+  }
+
   render() {
     return (
       <div>
-        <div className="navbar navbar-default" role="navigation">
-          <div className="container">
-            <div className="navbar-header">
-              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                <span className="sr-only">Toggle navigation</span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-              </button>
-              <a className="navbar-brand" href="/">React Inbox</a>
-            </div>
-          </div>
-        </div>
-
         <div className="container">
           <Toolbar
-            messages={this.state.messages}
-            markAsRead={this.markAsRead.bind(this)}
-            markAsUnread={this.markAsUnread.bind(this)}
-            deleteMessages={this.deleteMessages.bind(this)}
+            messages={ this.state.messages }
+            markAsRead={ this.markAsRead.bind(this) }
+            markAsUnread={ this.markAsUnread.bind(this) }
+            deleteMessages={ this.deleteMessages.bind(this) }
+            toggleSelectAll={ this.toggleSelectAll.bind(this) }
             />
           <MessageList
-            messages={this.state.messages}
-            toggleSelect={this.toggleSelect.bind(this)}
-            toggleStar={this.toggleStar.bind(this)}
+            messages={ this.state.messages }
+            toggleSelect={ this.toggleSelect.bind(this) }
+            toggleStar={ this.toggleStar.bind(this) }
             />
         </div>
       </div>
