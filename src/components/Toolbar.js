@@ -1,44 +1,54 @@
 import React from 'react'
 
-const Toolbar = () => (
-  <div className="row toolbar">
-    <div className="col-md-12">
-      <p className="pull-right">
-        <span className="badge badge">2</span>
-        unread messages
-      </p>
+const Toolbar = ({
+  messages,
+  markAsRead,
+  markAsUnread,
+  deleteMessages
+}) => {
 
-      <button className="btn btn-default">
-        <i className="fa fa-check-square-o"></i>
-      </button>
+  const unreadCount = messages.filter(message => !message.read).length
 
-      <button className="btn btn-default">
-        Mark As Read
-      </button>
+  return (
+    <div className="row toolbar">
+      <div className="col-md-12">
+        <p className="pull-right">
+          <span className="badge badge">{ unreadCount }</span>
+          unread { unreadCount === 1 ? 'message': 'messages' }
+        </p>
 
-      <button className="btn btn-default">
-        Mark As Unread
-      </button>
+        <button className="btn btn-default">
+          <i className="fa fa-check-square-o"></i>
+        </button>
 
-      <select className="form-control label-select">
-        <option>Apply label</option>
-        <option value="dev">dev</option>
-        <option value="personal">personal</option>
-        <option value="gschool">gschool</option>
-      </select>
+        <button className="btn btn-default" onClick={ markAsRead }>
+          Mark As Read
+        </button>
 
-      <select className="form-control label-select">
-        <option>Remove label</option>
-        <option value="dev">dev</option>
-        <option value="personal">personal</option>
-        <option value="gschool">gschool</option>
-      </select>
+        <button className="btn btn-default" onClick={ markAsUnread }>
+          Mark As Unread
+        </button>
 
-      <button className="btn btn-default">
-        <i className="fa fa-trash-o"></i>
-      </button>
-    </div>
-</div>
-)
+        <select className="form-control label-select">
+          <option>Apply label</option>
+          <option value="dev">dev</option>
+          <option value="personal">personal</option>
+          <option value="gschool">gschool</option>
+        </select>
+
+        <select className="form-control label-select">
+          <option>Remove label</option>
+          <option value="dev">dev</option>
+          <option value="personal">personal</option>
+          <option value="gschool">gschool</option>
+        </select>
+
+        <button className="btn btn-default" onClick={ deleteMessages }>
+          <i className="fa fa-trash-o"></i>
+        </button>
+      </div>
+  </div>
+  )
+}
 
 export default Toolbar

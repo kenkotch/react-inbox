@@ -37,20 +37,49 @@ class App extends Component {
     })
   }
 
+  markAsUnread() {
+    this.setState({
+      messages: this.state.messages.map(message => (
+        message.selected ? { ...message, read: false } : message
+      ))
+    })
+  }
 
-
-
+  deleteMessages() {
+    const messages = this.state.messages.filter(message => !message.selected)
+    this.setState({ messages })
+  }
 
   render() {
     return (
       <div>
-        <Toolbar />
-        <MessageList
-          messages={ this.state.messages }
-          markAsRead={ this.markAsRead.bind(this) }
-          toggleSelect={ this.toggleSelect.bind(this) }
-          toggleStar={ this.toggleStar.bind(this) }
-        />
+        <div className="navbar navbar-default" role="navigation">
+          <div className="container">
+            <div className="navbar-header">
+              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span className="sr-only">Toggle navigation</span>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+              </button>
+              <a className="navbar-brand" href="/">React Inbox</a>
+            </div>
+          </div>
+        </div>
+
+        <div className="container">
+          <Toolbar
+            messages={this.state.messages}
+            markAsRead={this.markAsRead.bind(this)}
+            markAsUnread={this.markAsUnread.bind(this)}
+            deleteMessages={this.deleteMessages.bind(this)}
+            />
+          <MessageList
+            messages={this.state.messages}
+            toggleSelect={this.toggleSelect.bind(this)}
+            toggleStar={this.toggleStar.bind(this)}
+            />
+        </div>
       </div>
     )
   }
