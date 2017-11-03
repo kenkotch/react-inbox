@@ -9,7 +9,9 @@ const Message = ({
   const starClass = message.starred ? 'fa-star' : 'fa-star-o'
   const readClass = message.read ? 'read' : 'unread'
 
-
+  const labels = message.labels.map((label, i) => (
+    <span key={ i } className="label label-warning">{ label }</span>
+  ))
 
   const starMessage = (e) => {
     e.stopPropagation()
@@ -31,6 +33,7 @@ const Message = ({
       </div>
       <div className="col-xs-11">
         <a href="#">
+          { labels }
           { message.subject }
         </a>
       </div>
