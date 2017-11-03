@@ -71,7 +71,7 @@ class App extends Component {
   removeLabel(label) {
     const messages = this.state.messages.map(message => {
       const idx = message.labels.indexOf(label)
-      if (message.selected && idx > 0) {
+      if (message.selected && idx > -1) {
         return {
           ...message,
           labels: [
@@ -87,22 +87,6 @@ class App extends Component {
 
   render() {
     return (
-
-    <div>
-      <div className="navbar navbar-default" role="navigation">
-        <div className="container">
-          <div className="navbar-header">
-            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-              <span className="sr-only">Toggle navigation</span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-            </button>
-            <a className="navbar-brand" href="/">React Inbox</a>
-          </div>
-        </div>
-      </div>
-
       <div>
         <div className="container">
           <Toolbar
@@ -121,7 +105,6 @@ class App extends Component {
             />
         </div>
       </div>
-    </div>
     )
   }
 }
