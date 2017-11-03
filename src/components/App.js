@@ -61,6 +61,30 @@ class App extends Component {
     })
   }
 
+  applyLabel(label) {
+    const messages = this.state.messages.map(message => (
+      message.selected && !message.labels.includes(label) ? { ...message, labels: [...message.labels, label].sort() } : message
+    ))
+    this.setState({ messages })
+  }
+
+  removeLabel(label) {
+    const messages = this.state.messages.map(message => {
+      const idx = message.labels.indexOf(label)
+      if (message.selected && idx > 0) {
+        return {
+          ...message,
+          labels: [
+            ...message.labels.slice(0, idx),
+            ...message.labels.slice(idx + 1)
+          ]
+        }
+      }
+      return message
+    })
+    this.setState({ messages })
+  }
+
   render() {
     return (
       <div>
@@ -71,6 +95,8 @@ class App extends Component {
             markAsUnread={ this.markAsUnread.bind(this) }
             deleteMessages={ this.deleteMessages.bind(this) }
             toggleSelectAll={ this.toggleSelectAll.bind(this) }
+            applyLabel={ this.applyLabel.bind(this) }
+            removeLabel={ this.removeLabel.bind(this) }
             />
           <MessageList
             messages={ this.state.messages }
