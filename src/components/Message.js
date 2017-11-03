@@ -22,7 +22,7 @@ const Message = ({
       <div className="col-xs-1">
         <div className="row">
           <div className="col-xs-2">
-            <input type="checkbox" checked={ !!message.selected } />
+            <input type="checkbox" checked={ !!message.selected } readOnly={ true } />
           </div>
           <div className="star-container col-xs-2" onClick={ starMessage }>
             <i className={`star fa ${ starClass }`}></i>
