@@ -1,24 +1,41 @@
 import React from 'react'
 
-const Message = ({ message }) => (
-  <div className="row message unread">
-    <div className="col-xs-1">
-      <div className="row">
-        <div className="col-xs-2">
-          <input type="checkbox" />
-        </div>
-        <div className="col-xs-2">
-          <i className="star fa fa-star-o"></i>
+const Message = ({
+  message,
+  toggleSelect,
+  toggleStar
+}) => {
+  const selectedClass = message.selected ? 'selected' : ""
+  const starClass = message.starred ? 'fa-star' : 'fa-star-o'
+
+
+
+  const starMessage = (e) => {
+    e.stopPropagation()
+    toggleStar(message)
+  }
+
+  return (
+
+    <div className={`row message unread ${selectedClass}`} onClick={ () => toggleSelect(message) }>
+      <div className="col-xs-1">
+        <div className="row">
+          <div className="col-xs-2">
+            <input type="checkbox" checked={ !!message.selected } />
+          </div>
+          <div className="star-container col-xs-2" onClick={ starMessage }>
+            <i className={`star fa ${ starClass }`}></i>
+          </div>
         </div>
       </div>
+      <div className="col-xs-11">
+        <a href="#">
+          { message.subject }
+        </a>
+      </div>
     </div>
-    <div className="col-xs-11">
-      <a href="#">
-        { `${ message.subject } ${ message.starred }` }
-      </a>
-    </div>
-  </div>
 
-)
+  )
+}
 
 export default Message
