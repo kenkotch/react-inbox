@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import Toolbar from './Toolbar'
 import MessageList from './MessageList'
-// import Message from './Message'
 import './App.css'
-
-
 
 class App extends Component {
 
@@ -32,12 +29,25 @@ class App extends Component {
     this.toggleProperty(message, 'starred')
   }
 
+  markAsRead() {
+    this.setState({
+      messages: this.state.messages.map(message => (
+        message.selected ? { ...message, read: true } : message
+      ))
+    })
+  }
+
+
+
+
+
   render() {
     return (
       <div>
         <Toolbar />
         <MessageList
           messages={ this.state.messages }
+          markAsRead={ this.markAsRead.bind(this) }
           toggleSelect={ this.toggleSelect.bind(this) }
           toggleStar={ this.toggleStar.bind(this) }
         />

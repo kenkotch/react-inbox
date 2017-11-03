@@ -7,6 +7,7 @@ const Message = ({
 }) => {
   const selectedClass = message.selected ? 'selected' : ""
   const starClass = message.starred ? 'fa-star' : 'fa-star-o'
+  const readClass = message.read ? 'read' : 'unread'
 
 
 
@@ -17,7 +18,7 @@ const Message = ({
 
   return (
 
-    <div className={`row message unread ${selectedClass}`} onClick={ () => toggleSelect(message) }>
+    <div className={`row message ${readClass} ${selectedClass}`} onClick={ () => toggleSelect(message) }>
       <div className="col-xs-1">
         <div className="row">
           <div className="col-xs-2">
