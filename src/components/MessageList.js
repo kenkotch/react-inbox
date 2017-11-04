@@ -10,7 +10,7 @@ const MessageList = ({
     key={ message.id }
     message={ message }
     toggleSelect={ toggleSelect }
-
+    toggleStar={ toggleStar }
   />)
 
 

@@ -10,6 +10,11 @@ const Message = ({
   const starClass = message.starred ? 'fa-star' : 'fa-star-o'
   const readClass = message.read ? 'read' : 'unread'
 
+  const starMessage = (e) => {
+    e.stopPropagation()
+    toggleStar(message)
+  }
+
   return (
     <div className={ `row message unread ${ selectedClass }` } onClick={ () => toggleSelect(message) }>
     <div className="col-xs-1">
@@ -20,8 +25,8 @@ const Message = ({
             readOnly={ true }
           />
         </div>
-        <div className="col-xs-2">
-          <i className="star fa fa-star-o"></i>
+        <div className="col-xs-2" onClick={ starMessage }>
+          <i className={ `star fa ${ starClass }` }></i>
         </div>
       </div>
     </div>
