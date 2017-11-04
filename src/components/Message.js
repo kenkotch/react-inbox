@@ -16,7 +16,7 @@ const Message = ({
   </div>
   <div className="col-xs-11">
     <a>
-      { message.suject }
+      { message.subject }
     </a>
   </div>
 </div>

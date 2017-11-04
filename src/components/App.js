@@ -13,7 +13,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className='container'>
         <Toolbar />
         <MessageList
           messages={ this.state.messages }

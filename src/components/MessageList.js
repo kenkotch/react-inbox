@@ -5,6 +5,7 @@ const MessageList = ({ messages }) => {
   const messageComp = messages.map(message => <Message
     key={ message.id }
     message={ message }
+
   />)
 
 
