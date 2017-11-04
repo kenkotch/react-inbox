@@ -16,10 +16,10 @@ const Message = ({
   }
 
   return (
-    <div className={ `row message unread ${ selectedClass }` } onClick={ () => toggleSelect(message) }>
+    <div className={ `row message unread ${ selectedClass }` }>
     <div className="col-xs-1">
       <div className="row">
-        <div className="col-xs-2">
+        <div className="col-xs-2" onClick={ () => toggleSelect(message) }>
           <input type="checkbox"
             checked={ !!message.selected }
             readOnly={ true }

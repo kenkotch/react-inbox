@@ -5,23 +5,15 @@ const MessageList = ({
   messages,
   toggleSelect,
   toggleStar
-}) => {
-  const messageComp = messages.map(message => <Message
-    key={ message.id }
-    message={ message }
-    toggleSelect={ toggleSelect }
-    toggleStar={ toggleStar }
-  />)
-
-
-
-
-  return (
+}) => (
     <div>
-      { messageComp }
+      { messages.map(message => <Message
+        key={ message.id }
+        message={ message }
+        toggleSelect={ toggleSelect }
+        toggleStar={ toggleStar }
+      />)}
     </div>
   )
-
-}
 
 export default MessageList
