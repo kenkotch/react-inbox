@@ -71,7 +71,7 @@ class App extends Component {
   removeLabel(label) {
     const messages = this.state.messages.map(message => {
       const idx = message.labels.indexOf(label)
-      if (message.selected && idx > -1) {
+      if (message.selected && idx >= 0) {
         return {
           ...message,
           labels: [
