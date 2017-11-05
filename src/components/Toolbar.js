@@ -7,26 +7,27 @@ const Toolbar = ({
 }) => {
 
   const selectedCount = messages.filter(message => message.selected).length
-  // console.log('selectedCount: ', selectedCount)
-  // const unreadCount = messages.filter(message => !message.read).length
-  //
-  // switch (selectedCount) {
-  //   case 0:
-  //     selectAllClass = 'fa-square-o'
-  //     break
-  //   case messages.length:
-  //     selectAllClass = 'fa-check-square-o'
-  //     break
-  //   default:
-  //     selectedClass = 'fa-minus-square-o'
-  // }
+  console.log('selectedCount: ', selectedCount)
+  const unreadCount = messages.filter(message => !message.read).length
+
+  let selectAllClass
+  switch (selectedCount) {
+    case 0:
+      selectAllClass = 'fa-square-o'
+      break
+    case messages.length:
+      selectAllClass = 'fa-check-square-o'
+      break
+    default:
+      selectAllClass = 'fa-minus-square-o'
+  }
 
   return (
     <div className="row toolbar">
       <div className="col-md-12">
         <p className="pull-right">
-          <span className="badge badge">2</span>
-          unread messages
+          <span className="badge badge">{ unreadCount }</span>
+          unread { unreadCount === 1 ? 'message' : 'messages' }
         </p>
 
         <button className="btn btn-default">
