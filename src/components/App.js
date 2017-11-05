@@ -30,10 +30,30 @@ class App extends Component {
     this.toggleProperty(message, 'starred')
   }
 
+  markAsRead() {
+    this.setState({
+      messages: this.state.messages.map(message => (
+        message.selected ? { ...message, read: true } : message
+      ))
+    })
+  }
+
+  markAsUnread() {
+    this.setState({
+      messages: this.state.messages.map(message => (
+        message.selected ? { ...message, read: false } : message
+      ))
+    })
+  }
+
   render() {
     return (
       <div className='container'>
-        <Toolbar />
+        <Toolbar
+          messages={ this.state.messages }
+          markAsRead={ this.markAsRead.bind(this) }
+          markAsUnread={ this.markAsUnread.bind(this) }
+        />
         <MessageList
           messages={ this.state.messages }
           toggleSelected={ this.toggleSelected.bind(this) }

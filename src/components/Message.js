@@ -8,6 +8,7 @@ const Message = ({
 
   const selectedClass = message.selected ? 'selected' : ''
   const starClass = message.starred ? 'fa-star' : 'fa-star-o'
+  const readClass = message.read ? 'read' : 'unread'
 
   const starMessage = (e) => {
     e.stopPropagation()
@@ -15,7 +16,7 @@ const Message = ({
   }
 
   return (
-    <div className={`row message unread ${ selectedClass }`}>
+    <div className={`row message ${ readClass } ${ selectedClass }`}>
       <div className="col-xs-1">
         <div className="row">
           <div className="col-xs-2" onClick={ () => toggleSelected(message) }>
