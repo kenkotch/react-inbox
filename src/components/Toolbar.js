@@ -31,7 +31,7 @@ const Toolbar = ({
         </p>
 
         <button className="btn btn-default">
-          <i className="fa fa-square-o"></i>
+          <i className={`fa ${ selectAllClass }`}></i>
         </button>
 
         <button className="btn btn-default" onClick={ markAsRead } disabled={ selectedCount === 0 }>
