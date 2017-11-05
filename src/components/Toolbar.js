@@ -3,11 +3,12 @@ import React from 'react'
 const Toolbar = ({
   messages,
   markAsRead,
-  markAsUnread
+  markAsUnread,
+  toggleSelectAll,
+  deleteMessages
 }) => {
 
   const selectedCount = messages.filter(message => message.selected).length
-  console.log('selectedCount: ', selectedCount)
   const unreadCount = messages.filter(message => !message.read).length
 
   let selectAllClass
@@ -22,6 +23,8 @@ const Toolbar = ({
       selectAllClass = 'fa-minus-square-o'
   }
 
+  console.log(selectAllClass)
+
   return (
     <div className="row toolbar">
       <div className="col-md-12">
@@ -30,7 +33,7 @@ const Toolbar = ({
           unread { unreadCount === 1 ? 'message' : 'messages' }
         </p>
 
-        <button className="btn btn-default">
+        <button className="btn btn-default" onClick={ toggleSelectAll }>
           <i className={`fa ${ selectAllClass }`}></i>
         </button>
 
@@ -56,7 +59,7 @@ const Toolbar = ({
           <option value="gschool">gschool</option>
         </select>
 
-        <button className="btn btn-default" disabled="disabled">
+        <button className="btn btn-default" onClick={ deleteMessages } disabled={ selectedCount === 0 }>
           <i className="fa fa-trash-o"></i>
         </button>
       </div>

@@ -46,7 +46,21 @@ class App extends Component {
     })
   }
 
-  
+  toggleSelectAll() {
+    const selectedMessages = this.state.messages.filter(message => message.selected)
+    const selected = selectedMessages.length !== this.state.messages.length
+
+    this.setState({
+      messages: this.state.messages.map(message => (
+        message.selected !== selected ? { ...message, selected } : message
+      ))
+    })
+  }
+
+  deleteMessages() {
+    const messages = this.state.messages.filter(message => !message.selected)
+    this.setState({ messages })
+  }
 
   render() {
     return (
@@ -55,6 +69,9 @@ class App extends Component {
           messages={ this.state.messages }
           markAsRead={ this.markAsRead.bind(this) }
           markAsUnread={ this.markAsUnread.bind(this) }
+          toggleSelectAll={ this.toggleSelectAll.bind(this) }
+          deleteMessages={ this.deleteMessages.bind(this) }
+
         />
         <MessageList
           messages={ this.state.messages }
