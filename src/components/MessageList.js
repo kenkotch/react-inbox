@@ -2,13 +2,17 @@ import React from 'react'
 import Message from './Message'
 
 const MessageList = ({
-  messages
+  messages,
+  toggleSelected,
+  toggleStar
 }) => {
 
   const messageComp = messages.map(message => (
     <Message
       key={ message.id }
       message={ message }
+      toggleSelected={ toggleSelected }
+      toggleStar={ toggleStar }
     />
   ))
 

@@ -1,7 +1,8 @@
 import React from 'react'
 
 const Toolbar = ({
-  messages
+  messages,
+  toggleSelected
 }) => {
   return (
     <div className="row toolbar">

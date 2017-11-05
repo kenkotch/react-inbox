@@ -11,12 +11,33 @@ class App extends Component {
     this.state = { messages: props.messages }
   }
 
+  toggleProperty(message, property) {
+    const idx = this.state.messages.indexOf(message)
+    this.setState({
+      messages: [
+        ...this.state.messages.slice(0, idx),
+        { ...message, [property]: !message[property] },
+        ...this.state.messages.slice(idx + 1)
+      ]
+    })
+  }
+
+  toggleSelected(message) {
+    this.toggleProperty(message, 'selected')
+  }
+
+  toggleStar(message) {
+    this.toggleProperty(message, 'starred')
+  }
+
   render() {
     return (
       <div className='container'>
         <Toolbar />
         <MessageList
           messages={ this.state.messages }
+          toggleSelected={ this.toggleSelected.bind(this) }
+          toggleStar={ this.toggleStar.bind(this) }
         />
       </div>
     )

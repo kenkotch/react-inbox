@@ -1,18 +1,32 @@
 import React from 'react'
 
 const Message = ({
-  message
+  message,
+  toggleSelected,
+  toggleStar
 }) => {
 
+  const selectedClass = message.selected ? 'selected' : ''
+  const starClass = message.starred ? 'fa-star' : 'fa-star-o'
+
+  const starMessage = (e) => {
+    e.stopPropagation()
+    toggleStar(message)
+  }
+
   return (
-    <div className="row message unread">
+    <div className={`row message unread ${ selectedClass }`}>
       <div className="col-xs-1">
         <div className="row">
-          <div className="col-xs-2">
-            <input type="checkbox" />
+          <div className="col-xs-2" onClick={ () => toggleSelected(message) }>
+            <input
+              type="checkbox"
+              checked={ !!message.selected }
+              readOnly={ true }
+            />
           </div>
-          <div className="col-xs-2">
-            <i className="star fa fa-star-o"></i>
+          <div className="col-xs-2" onClick={ starMessage }>
+            <i className={`star fa ${ starClass }`}></i>
           </div>
         </div>
       </div>
