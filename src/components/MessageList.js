@@ -3,13 +3,15 @@ import Message from './Message'
 
 const MessageList = ({
   messages,
-  toggleSelected
+  toggleSelected,
+  toggleStar
 }) => {
   const messageComp = messages.map(message => (
     <Message
       key={ message.id }
       message={ message }
       toggleSelected={ toggleSelected }
+      toggleStar={ toggleStar }
     />
   ))
 

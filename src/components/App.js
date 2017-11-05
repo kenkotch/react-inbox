@@ -25,6 +25,10 @@ class App extends Component {
       this.toggleProperty(message, 'selected')
     }
 
+    toggleStar(message) {
+      this.toggleProperty(message, 'starred')
+    }
+
 
   render() {
     return (
@@ -33,6 +37,7 @@ class App extends Component {
         <MessageList
           messages={ this.state.messages }
           toggleSelected={ this.toggleSelected.bind(this) }
+          toggleStar={ this.toggleStar.bind(this) }
         />
       </div>
     )
