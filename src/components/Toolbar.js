@@ -5,7 +5,9 @@ const Toolbar = ({
   markAsRead,
   markAsUnread,
   toggleSelectAll,
-  deleteMessages
+  deleteMessages,
+  applyLabel,
+  removeLabel
 }) => {
 
   const selectedCount = messages.filter(message => message.selected).length
@@ -23,7 +25,7 @@ const Toolbar = ({
       selectAllClass = 'fa-minus-square-o'
   }
 
-  console.log(selectAllClass)
+  // console.log(selectAllClass)
 
   return (
     <div className="row toolbar">
@@ -45,14 +47,20 @@ const Toolbar = ({
           Mark As Unread
         </button>
 
-        <select className="form-control label-select" disabled="disabled">
+        <select className="form-control label-select"
+          disabled={ selectedCount === 0 }
+          onChange={ (e) => { applyLabel(e.target.value); e.target.selectedIndex = 0 } }
+        >
           <option>Apply label</option>
           <option value="dev">dev</option>
           <option value="personal">personal</option>
           <option value="gschool">gschool</option>
         </select>
 
-        <select className="form-control label-select" disabled="disabled">
+        <select className="form-control label-select"
+          disabled={ selectedCount === 0 }
+          onChange={ (e) => { removeLabel(e.target.value); e.target.selectedIndex = 0 } }
+        >
           <option>Remove label</option>
           <option value="dev">dev</option>
           <option value="personal">personal</option>
